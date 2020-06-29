@@ -20,13 +20,13 @@ pipelineJob('kernel-tree-monitor') {
       lightweight(true)
       scm {
         git {
-          branch(KCI_CORE_BRANCH)
+          branch(KCI_JENKINS_BRANCH)
           remote {
-            url(KCI_CORE_URL)
+            url(KCI_JENKINS_URL)
           }
         }
       }
-      scriptPath('jenkins/monitor.jpl')
+      scriptPath('jobs/monitor.jpl')
     }
     if (KCI_MONITOR_CRON) {
       triggers {
@@ -163,13 +163,13 @@ pipelineJob('test-runner') {
       lightweight(true)
       scm {
         git {
-          branch(KCI_CORE_BRANCH)
+          branch(KCI_JENKINS_BRANCH)
           remote {
-            url(KCI_CORE_URL)
+            url(KCI_JENKINS_URL)
           }
         }
       }
-      scriptPath('jenkins/test-runner.jpl')
+      scriptPath('jobs/test-runner.jpl')
     }
   }
   configure { project ->
@@ -275,13 +275,13 @@ pipelineJob('lava-bisection') {
       lightweight(true)
       scm {
         git {
-          branch(KCI_CORE_BRANCH)
+          branch(KCI_JENKINS_BRANCH)
           remote {
-            url(KCI_CORE_URL)
+            url(KCI_JENKINS_URL)
           }
         }
       }
-      scriptPath('jenkins/bisect.jpl')
+      scriptPath('jobs/bisect.jpl')
     }
   }
   configure { project ->
