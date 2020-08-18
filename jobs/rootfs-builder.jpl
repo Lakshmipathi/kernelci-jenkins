@@ -86,6 +86,9 @@ node("debos && docker") {
     Config:    ${config}
     CPU arch:  ${arch}
     Pipeline:  ${pipeline_version}
+    URL IS:  ${params.KCI_CORE_URL}
+    branch :  ${params.KCI_CORE_BRANCH}
+    blah : ${params.blah}
     Container: ${docker_image}""")
 
     if (!config || !arch || !pipeline_version) {
@@ -99,7 +102,7 @@ node("debos && docker") {
     }
 
     j.dockerPullWithRetry(docker_image).
-        inside(" --privileged --device /dev/kvm ") {
+        inside(" --privileged --device /dev/kvm --net host ") {
 
         stage("Build") {
             timeout(time: 4, unit: 'HOURS') {

@@ -76,6 +76,8 @@ def buildRootfsStep(job, config ,arch) {
         'ROOTFS_CONFIG': config,
         'ROOTFS_ARCH': arch,
         'PIPELINE_VERSION':pipeline_version,
+        'KCI_CORE_URL': "${params.KCI_CORE_URL}",
+        'KCI_CORE_BRANCH': "${params.KCI_CORE_BRANCH}",
     ]
     def job_params = []
 
@@ -95,6 +97,8 @@ node("docker && build-trigger") {
     def configs = []
 
     print("""\
+    URL:  ${params.KCI_CORE_URL}
+    BRANCH::  ${params.KCI_CORE_BRANCH}
     Config:    ${params.ROOTFS_CONFIG}
     CPU arch:  ${params.ROOTFS_ARCH}
     Container: ${docker_image}""")
